@@ -25,4 +25,7 @@ public class Projection implements Serializable {
     private Movie movie;
     @OneToMany(mappedBy = "projection")
     private Collection<Ticket> tickets;
+    @ManyToOne
+    private Session session;
+
 }
