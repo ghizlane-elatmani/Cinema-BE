@@ -8,18 +8,22 @@ import lombok.ToString;
 
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.Date;
 
 @Entity
 @Data @AllArgsConstructor @NoArgsConstructor @ToString
-public class Cinema implements Serializable {
+public class Movie implements Serializable {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name;
-    private double latitude, longitude, altitude;
-    private int roomsNumber;
-    @OneToMany(mappedBy = "cinema")
-    private Collection<Room> rooms;
+    private String title;
+    private String description;
+    private String producer;
+    private Date releaseDate;
+    private double duration;
+    private String photo;
+    @OneToMany(mappedBy = "movie")
+    private Collection<Projection> projections;
     @ManyToOne
-    private City city;
+    private Category category;
 }

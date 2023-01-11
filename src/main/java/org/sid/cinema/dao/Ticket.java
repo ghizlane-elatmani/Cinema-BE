@@ -7,19 +7,20 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import java.io.Serializable;
-import java.util.Collection;
 
 @Entity
 @Data @AllArgsConstructor @NoArgsConstructor @ToString
-public class Cinema implements Serializable {
+public class Ticket implements Serializable {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name;
-    private double latitude, longitude, altitude;
-    private int roomsNumber;
-    @OneToMany(mappedBy = "cinema")
-    private Collection<Room> rooms;
+    private String nameCustomer;
+    private double price;
+    private int paymentCode;
+    private boolean isReserved;
     @ManyToOne
-    private City city;
+    private Place place;
+    @ManyToOne
+    private Projection projection;
+
 }

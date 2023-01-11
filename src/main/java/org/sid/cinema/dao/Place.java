@@ -11,15 +11,16 @@ import java.util.Collection;
 
 @Entity
 @Data @AllArgsConstructor @NoArgsConstructor @ToString
-public class Cinema implements Serializable {
+public class Place implements Serializable {
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name;
+    private int number;
     private double latitude, longitude, altitude;
-    private int roomsNumber;
-    @OneToMany(mappedBy = "cinema")
-    private Collection<Room> rooms;
     @ManyToOne
-    private City city;
+    private Room room;
+    @OneToMany(mappedBy = "place")
+    private Collection<Ticket> tickets;
+
 }
