@@ -1,4 +1,4 @@
-package org.sid.cinema.dao;
+package org.sid.cinema.dao.entities;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -11,11 +11,12 @@ import java.util.Collection;
 
 @Entity
 @Data @AllArgsConstructor @NoArgsConstructor @ToString
-public class Category implements Serializable {
-
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class City implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    @OneToMany(mappedBy = "category")
-    private Collection<Movie> movies;
+    private double latitude, longitude, altitude;
+    @OneToMany(mappedBy = "city")
+    private Collection<Cinema> cinemas;
 }

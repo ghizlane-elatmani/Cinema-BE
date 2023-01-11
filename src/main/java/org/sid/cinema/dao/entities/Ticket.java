@@ -1,4 +1,4 @@
-package org.sid.cinema.dao;
+package org.sid.cinema.dao.entities;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -16,6 +16,7 @@ public class Ticket implements Serializable {
     private Long id;
     private String nameCustomer;
     private double price;
+    @Column(unique = true)
     private int paymentCode;
     private boolean isReserved;
     @ManyToOne

@@ -1,4 +1,4 @@
-package org.sid.cinema.dao;
+package org.sid.cinema.dao.entities;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -8,19 +8,15 @@ import lombok.ToString;
 
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.Date;
 
 @Entity
 @Data @AllArgsConstructor @NoArgsConstructor @ToString
-public class Room implements Serializable {
+public class Session implements Serializable {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name;
-    private int placeNumber;
-    @ManyToOne
-    private Cinema cinema;
-    @OneToMany(mappedBy = "room")
-    private Collection<Place> places;
-    @OneToMany(mappedBy = "room")
-    private Collection<Projection> projections;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date startTime;
+
 }

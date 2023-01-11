@@ -1,4 +1,4 @@
-package org.sid.cinema.dao;
+package org.sid.cinema.dao.entities;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
