@@ -1,5 +1,6 @@
 package org.sid.cinema.dao.entities;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -16,7 +17,7 @@ public class Ticket implements Serializable {
     private Long id;
     private String nameCustomer;
     private double price;
-    @Column(unique = true, nullable = true)
+    @Column(unique = false, nullable = true)
     private Integer paymentCode;
     private boolean isReserved;
     @ManyToOne
