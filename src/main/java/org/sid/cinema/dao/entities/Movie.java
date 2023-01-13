@@ -1,5 +1,6 @@
 package org.sid.cinema.dao.entities;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -23,6 +24,7 @@ public class Movie implements Serializable {
     private double duration;
     private String photo;
     @OneToMany(mappedBy = "movie")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Collection<Projection> projections;
     @ManyToOne
     private Category category;
