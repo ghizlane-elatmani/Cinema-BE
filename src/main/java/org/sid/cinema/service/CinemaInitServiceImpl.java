@@ -128,20 +128,23 @@ public class CinemaInitServiceImpl implements  ICinemaInitService{
     @Override
     public void initProjections() {
         double[] prices = new double[]{30, 50, 60, 70, 90, 100};
+        List<Movie> moviesList = movieRepository.findAll();
         cityRepository.findAll().forEach( city -> {
             city.getCinemas().forEach( cinema -> {
                 cinema.getRooms().forEach( room ->  {
-                    movieRepository.findAll().forEach(movie -> {
-                        sessionRepository.findAll().forEach(session -> {
-                            Projection projection = new Projection();
-                            projection.setMovie(movie);
-                            projection.setDateProjection(new Date());
-                            projection.setPrice(prices[new Random().nextInt(prices.length)]);
-                            projection.setRoom(room);
-                            projection.setSession(session);
-                            projectionRepository.save(projection);
-                        });
+                    int index = new Random().nextInt(moviesList.size());
+                    Movie movie = moviesList.get(index);
+
+                    sessionRepository.findAll().forEach(session -> {
+                        Projection projection = new Projection();
+                        projection.setMovie(movie);
+                        projection.setDateProjection(new Date());
+                        projection.setPrice(prices[new Random().nextInt(prices.length)]);
+                        projection.setRoom(room);
+                        projection.setSession(session);
+                        projectionRepository.save(projection);
                     });
+
                 });
             });
         });
